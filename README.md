@@ -76,3 +76,122 @@
   + 服务端渲染是可以被爬虫抓取到的，客户端异步渲染是很难被爬虫抓取到的
   
 ## 下午总结
+
+## 知识点
+
+- 模块系统
+  + 核心模块
+  + 第三方模块
+  + 自己写的模块
+  + 加载规则以及加载机制
+  + 循环加载
+- npm
+- package.json
+- Express
+  + 第三方 Web 开发框架
+  + 高度封装了 http 模块
+  + 更加专注于业务，而非底层细节
+  + 知其所以然
+- 增删改查
+  + 使用文件来保存数据（锻炼异步编码）
+- MongoDB
+  + （所有方法都封装好了）
+
+   - 如何在 Node 中实现服务器重定向
+     + header(location)
+       * 301 永久重定向 浏览器会记住
+       * 302 临时重定向 浏览器不记忆
+
+
+
+## Node中的模块系统
+
+使用 Node 编写应用程序主要就是在使用：
+
+- EcmaScript 语言
+  + 和浏览器不一样， 在 Node 中没有 BOM 和 DOM
+- 核心模块
+     + 文件操作的fs
+     + http 服务的 http
+     + url 路径操作模块
+     + path 路径处理模块
+     + os 操作系统信息
+- 第三方模块
+     + art-template
+- 自己写的模块
+   + 自己创建的文件
+
+
+
+### 6.1什么是模块化
+
+- 文件作用域
+- 通信规则
+  + 加载 require
+  + 导出
+
+### 6.2CommonJS 模块规范
+
+在 Node 中的 JavaScript 还有一个很重要的概念：
+
+- 模块作用域
+
+- 使用 require 方法用来加载模块
+
+- 使用 exports 接口对象用来导出模块中的成员
+
+  #### 6.2.1 加载 `require`
+
+  语法：
+
+  ```javascript
+  var 自定义变量名称 = requrie('模块')
+  ```
+
+  两个作用：
+
+  - 执行被加载模块中的代码
+  - 得到被加载模块中的 `exports` 导出接口对象
+
+  #### 6.2.2 导出 `exports`
+
+  + Node 中是模块作用域，默认文件中所有的成员只在当前文件模块有效
+
+  + 对于希望可以被其他模块访问的成员，我们就需要把这些公开的成员都挂载到 `exports` 接口对象中就可以了
+
+    导出多个成员（必须在对象中）：
+
+    ```javascript
+    exports.a = 123
+    exports.b = 'hello'
+    exports.c = function () {
+        console.log('ccc')
+    }
+    exports.d = {
+        foo: 'bar'
+    }
+    ```
+
+    
+
+    导出单个成员（函数、字符串）：
+
+    ```javascript
+    module.exports = 'hello'
+    module.exports = function (x,y) {
+        return x + y
+    }
+    ```
+
+    #### 6.2.3 原理解析
+
+    exports 和 module.exports 的一个引用：
+
+    ```javascript
+    exports.foo = 'bar'
+    //等价于
+    module.exports.foo = 'bar'
+    
+    ```
+
+    
