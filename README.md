@@ -199,6 +199,30 @@
 
     原生的 http 在某些方面表现不足以应对我们的开发需求， 所以我们就需要使用框架来加快我们的开发效率，框架的目的
 
+    #### 7.1.3.基本路由
+
+    路由器
+
+    get:
+
+    ```javascript
+    // 当你以 GET 方法请求 / 的时候，执行对应的处理函数
+    app.get('/', function (req, res) {
+        res.send('hello world')
+    })
+    ```
+
+    post:
+
+    ```javascript
+    // 当你以 POST 方法请求 / 的时候，指定对应的处理函数
+    app.post('/', function (req, res) {
+        res.send('Got a POST request')
+    })
+    ```
+
+    
+
     ### 9.2.修改完代码自动重启
 
     使用第三方命令行工具:`nodemon`来帮助我们解决频繁修改代码重启服务器问题。
