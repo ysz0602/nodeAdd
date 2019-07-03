@@ -221,6 +221,31 @@
     })
     ```
 
+    #### 7.2.在express中配置使用`art-template`模板引擎
+
+    安装：
+
+    ```shell
+    npm install --save art-template
+    npm install --save express-art-template
+    ```
+
+    配置：
+
+    ```javascript
+    app.get('/', function (req, res) {
+        res.render('index.html', {
+            title: 'hello world'
+        })
+    })
+    ```
+
+    如果希望修改默认的`views` 视图渲染存储目录，可以：
+
+    ```javascript
+    app.set('views', 目录路径)
+    ```
+
     
 
     ### 9.2.修改完代码自动重启
