@@ -1,4 +1,5 @@
 var express = require('express')
+var bodyParser = require('body-parser')
 
 var app = express()
 
@@ -16,6 +17,13 @@ app.engine('html', require('express-art-template'))
 // res.render('html模板名', {模板数据})
 // 第一个参数不能写路径，默认会去项目中的 views 目录查找模板文件
 // 也就是说 Express 有一个约定：开发人员把所有的视图文件都放到 views 目录中
+
+// 配置 body-parser 中间件
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+ 
+// parse application/json
+app.use(bodyParser.json())
 
 var comments = [
     {
@@ -54,16 +62,27 @@ app.get('/', function (req, res) {
 app.get('/post', function (req, res) {
     res.render('post.html')
 })
+app.post('/post', function (req, res) {
+    // 1. 获取表单 POST 请求体数据
+    // 2. 处理
+    // 3. 发送响应
 
-app.get('/pinglun', function (req, res) {
-    console.log(req.query)
-    var comment = req.query
+    // req.query 只能拿 get 请求的数据
+    var comment = req.body
     comment.dateTime = '2019-07-03 10:58:51'
     comments.unshift(comment)
     res.redirect('/')
-    // res.statusCode = 302
-    // res.setHeader('Location', '/')
 })
+
+// app.get('/pinglun', function (req, res) {
+//     console.log(req.query)
+//     var comment = req.query
+//     comment.dateTime = '2019-07-03 10:58:51'
+//     comments.unshift(comment)
+//     res.redirect('/')
+//     // res.statusCode = 302
+//     // res.setHeader('Location', '/')
+// })
 
 
 app.listen(3000, function () {
