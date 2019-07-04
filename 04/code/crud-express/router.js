@@ -7,6 +7,7 @@
  */
 
 var fs = require('fs')
+var Student = require('./student')
 
 // Express 提供了一种更好的方式
 // 专门用来包装路由的
@@ -17,32 +18,42 @@ var router = express.Router()
 
 // 2.把路由都挂载到 router 路由容器中
 router.get('/students', function (req, res) {
-    fs.readFile('./db.json', 'utf8', function(err, data) {
+    // fs.readFile('./db.json', 'utf8', function(err, data) {
+    //     if (err) {
+    //         return res.status(500).send('Server error!')
+    //     }
+    //     // console.log(data)
+    //     res.render('index.html', {
+    //         fruits: [
+    //             '苹果',
+    //             '香蕉',
+    //             '橘子'
+    //         ],
+    //         students: JSON.parse(data).students
+    //     })
+    // })
+
+    Student.find(function (err, students) {
         if (err) {
             return res.status(500).send('Server error!')
         }
-        // console.log(data)
         res.render('index.html', {
             fruits: [
                 '苹果',
                 '香蕉',
                 '橘子'
             ],
-            students: JSON.parse(data).students
+            students: students
         })
     })
 })
 
 router.get('/students/new', function (req, res) {
-
-})
-
-router.get('/students/new', function (req, res) {
-    
+    res.render('new.html')
 })
 
 router.post('/students/new', function (req, res) {
-    
+    console.log(req.body)
 })
 
 router.get('/students/edit', function (req, res) {
