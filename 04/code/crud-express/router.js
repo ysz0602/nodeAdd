@@ -41,19 +41,19 @@ router.get('/students/new', function (req, res) {
     
 })
 
-router.get('/students/new', function (req, res) {
+router.post('/students/new', function (req, res) {
     
 })
 
-router.get('/students/new', function (req, res) {
+router.get('/students/edit', function (req, res) {
     
 })
 
-router.get('/students/new', function (req, res) {
+router.post('/students/edit', function (req, res) {
     
 })
 
-router.get('/students/new', function (req, res) {
+router.get('/students/delete', function (req, res) {
     
 })
 
