@@ -6,7 +6,7 @@
  * 模块职责要单一，不要乱写
  */
 
-var fs = require('fs')
+// var fs = require('fs')
 var Student = require('./student')
 
 // Express 提供了一种更好的方式
@@ -53,19 +53,55 @@ router.get('/students/new', function (req, res) {
 })
 
 router.post('/students/new', function (req, res) {
-    console.log(req.body)
+    Student.save(req.body, function (err) {
+        if (err) {
+            return res.status(500).send('Server error!')
+        }
+        res.redirect('/students')
+    })
 })
 
 router.get('/students/edit', function (req, res) {
-    
+    // 1.在客户端的列表页中处理链接问题(需要有 id 参数)
+    // 2.获取要编辑的学生 id
+    // 3.渲染编辑页面
+    //  根据 id 把学生信息查出来
+    //  使用模板引擎渲染页面
+    Student.findById(parseInt(req.query.id), function (err, student) {
+        if (err) {
+            return res.status(500).send('Server error!')
+        }
+        // console.log(student)
+        res.render('edit.html', {
+            student: student
+        })
+    })
 })
 
 router.post('/students/edit', function (req, res) {
-    
+    // 1. 获取表单数据
+    // req.body
+    // 2. 保存更新
+    // Student.update()
+    // 3. 发送相应
+    Student.updateById(req.body, function (err) {
+        if (err) {
+            return res.status(500).send('Server error!')
+        }
+        res.redirect('/students')
+    })
 })
 
 router.get('/students/delete', function (req, res) {
-    
+    // 1. 获取要删除的 id
+    // 2. 根据 id 执行删除操作
+    // 3. 根据操作结果发送响应数据
+    Student.deleteById(req.query.id, function (err) {
+        if (err) {
+            return res.status(500).send('Server error!')
+        }
+        res.redirect('/students')
+    })
 })
 
 // 3. 把 router 导出

@@ -1,10 +1,46 @@
 {
     "students": [
-        {"id": 1, "name": "张三", "gender": 0, "age": 18, "hobbies": "吃饭、睡觉、lol"},
-        {"id": 2, "name": "李四", "gender": 0, "age": 18, "hobbies": "吃饭、睡觉、lol"},
-        {"id": 3, "name": "张三", "gender": 0, "age": 18, "hobbies": "吃饭、睡觉、lol"},
-        {"id": 4, "name": "张三", "gender": 0, "age": 18, "hobbies": "吃饭、睡觉、lol"},
-        {"id": 5, "name": "张三", "gender": 0, "age": 18, "hobbies": "吃饭、睡觉、lol"},
-        {"id": 6, "name": "张三", "gender": 0, "age": 18, "hobbies": "吃饭、睡觉、lol"}
+        {
+            "id": 2,
+            "name": "李四",
+            "gender": 0,
+            "age": "18",
+            "hobbies": "吃饭、睡觉、lol123"
+        },
+        {
+            "id": 3,
+            "name": "张三",
+            "gender": 0,
+            "age": 18,
+            "hobbies": "吃饭、睡觉、lol"
+        },
+        {
+            "id": 5,
+            "name": "张三",
+            "gender": 0,
+            "age": 18,
+            "hobbies": "吃饭、睡觉、lol"
+        },
+        {
+            "id": 6,
+            "name": "张三",
+            "gender": 0,
+            "age": 18,
+            "hobbies": "吃饭、睡觉、lol"
+        },
+        {
+            "name": "shdf asd",
+            "gender": "0",
+            "age": "112",
+            "hobbies": "电感式 阿士大夫啊",
+            "id": 7
+        },
+        {
+            "name": "阿斯顿福建",
+            "gender": "1",
+            "age": "34",
+            "hobbies": "2143阿士大夫 萨达夫",
+            "id": 8
+        }
     ]
 }
