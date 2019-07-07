@@ -434,4 +434,42 @@
 
     只有通过 nodemon app.js 启动的服务，则它会监视你的文件变化，当文件变化的时候，自动重启服务器。
 
+    ### 10.Promise
+
+    通过回调嵌套的方式保证顺序
+
+    为了解决编码方式带来的问题（回调地狱），所以ES6新增了Promise
+
+    封装Promise API
+
+    ```javascript
+    var fs = require('fs')
+    
+    // 创建 Promise 容器
+    
+    function pReadFile (filePath) {
+        return new Promise(function (resolve, reject) {
+            fs.readFile(filePath, 'utf8', function (err, data) {
+                if (err) {
+                    reject(err)
+                } else {
+                    resolve(data)
+                }
+            })
+        })
+    }
+    
+    pReadFile('./data/a.txt').then(function (data) {
+        console.log(data)
+        return pReadFile('./data/b.txt')
+    }).then(function (data) {
+        console.log(data)
+        return pReadFile('./data/c.txt')
+    }).then(function (data) {
+        console.log(data)
+    }).catch(function (err) {
+        console.log(err)
+    })
+    ```
+
     
