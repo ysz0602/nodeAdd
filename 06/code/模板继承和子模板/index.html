@@ -1,0 +1,21 @@
+{{ extend './layout.html' }}
+
+{{ block 'head' }}
+ <style>
+    body {
+        background-color: red;
+    }
+ </style>
+{{ /block }}
+
+{{ block 'content' }}
+    <div>
+        <h1>index 页面</h1>
+    </div>
+{{ /block }}
+
+{{ block 'script' }}
+<script>
+    window.alert('弹弹弹')
+</script>
+{{ /block }}
